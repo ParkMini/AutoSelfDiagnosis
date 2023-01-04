@@ -5,12 +5,15 @@ from selenium.webdriver.support.select import Select
 import time
 import pyautogui
 from datetime import datetime
+from discord_webhook import DiscordWebhook, DiscordEmbed
 
 sido = ""
 junggoding = ""
 schoolname = "학교 이름"
 name = "이름"
 birthday = "생년월일 (6자리)"
+
+webhook = DiscordWebhook(url="Webhook url")
 
 driver = webdriver.Chrome()
 driver.get("https://hcs.eduro.go.kr/#/loginHome")
@@ -55,4 +58,11 @@ driver.find_element(By.ID, "survey_q3a1").click()
 driver.find_element(By.ID, "btnConfirm").click()
 time.sleep(0.5)
 driver.save_screenshot("./result.png")
+embed = DiscordEmbed(title='Automatic Self Dianosis', color=GREEN)
+embed.add_embed_field(name="자가진단 시간", value=str(datetime.now()))
+embed.set_image(url="./result.png")
+embed.set_footer(text="Made By. ParkMini")
+embed.set_timestamp()
+webhook.add_embed(embed)
+response = webhook.execute()
 driver.close()
