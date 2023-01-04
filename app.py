@@ -6,13 +6,11 @@ import time
 import pyautogui
 from datetime import datetime
 
-sido = "시/도"
-junggoding = "초등학교:2/중학교:3/고등학교:4"
+sido = ""
+junggoding = ""
 schoolname = "학교 이름"
 name = "이름"
 birthday = "생년월일(6자리)"
-zero, one, two, three, four, five, six, seven, eight, nine = ""
-password = [one,two,three,four] # 영어 소문자로 쓰세요
 
 driver = webdriver.Chrome()
 driver.get("https://hcs.eduro.go.kr/#/loginHome")
@@ -41,10 +39,12 @@ six = pyautogui.locateCenterOnScreen("6.png")
 seven = pyautogui.locateCenterOnScreen("7.png")
 eight = pyautogui.locateCenterOnScreen("8.png")
 nine = pyautogui.locateCenterOnScreen("9.png")
-pyautogui.click(password[0])
-pyautogui.click(password[1])
-pyautogui.click(password[2])
-pyautogui.click(password[3])
+# 비밀번호 4자리 (엉어로)
+pyautogui.click(one)
+pyautogui.click(two)
+pyautogui.click(three)
+pyautogui.click(four)
+########################
 driver.find_element(By.ID, "btnConfirm").click()
 time.sleep(1.8)
 driver.find_element(By.CLASS_NAME, "survey-button").click()
@@ -53,6 +53,5 @@ driver.find_element(By.ID, "survey_q1a1").click()
 driver.find_element(By.ID, "survey_q2a3").click()
 driver.find_element(By.ID, "survey_q3a1").click()
 driver.find_element(By.ID, "btnConfirm").click()
-time.sleep(1)
-driver.save_screenshot(str(datetime.now()) + ".png")
-time.sleep(10) #Debug code (wait 10s)
+time.sleep(2)
+driver.close()
