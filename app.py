@@ -10,7 +10,7 @@ sido = ""
 junggoding = ""
 schoolname = "학교 이름"
 name = "이름"
-birthday = "생년월일(6자리)"
+birthday = "생년월일 (6자리)"
 
 driver = webdriver.Chrome()
 driver.get("https://hcs.eduro.go.kr/#/loginHome")
@@ -53,5 +53,6 @@ driver.find_element(By.ID, "survey_q1a1").click()
 driver.find_element(By.ID, "survey_q2a3").click()
 driver.find_element(By.ID, "survey_q3a1").click()
 driver.find_element(By.ID, "btnConfirm").click()
-time.sleep(2)
+time.sleep(0.5)
+driver.save_screenshot("./result.png")
 driver.close()
