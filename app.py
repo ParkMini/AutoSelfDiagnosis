@@ -5,7 +5,7 @@ from selenium.webdriver.support.select import Select
 import time
 import pyautogui
 from datetime import datetime
-from discord_webhook import DiscordWebhook, DiscordEmbed
+from discord_webhook import DiscordWebhook
 
 sido = ""
 junggoding = ""
@@ -13,7 +13,7 @@ schoolname = "학교 이름"
 name = "이름"
 birthday = "생년월일 (6자리)"
 
-webhook = DiscordWebhook(url="Webhook url")
+webhook = DiscordWebhook(url="Discord Webhook URL")
 
 driver = webdriver.Chrome()
 driver.get("https://hcs.eduro.go.kr/#/loginHome")
@@ -66,3 +66,6 @@ embed.set_timestamp()
 webhook.add_embed(embed)
 response = webhook.execute()
 driver.close()
+with open("./result.png", "rb") as f:
+	webhook.add_file(f.read(), filename='result.png')
+response = webhook.execute()
